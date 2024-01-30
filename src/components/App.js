@@ -4,18 +4,20 @@ import "./App.css";
 
 const App = () => {
   const [usersData, setUsersData] = useState([]);
+  const noDataMessage = 'No data found to display.'
   const [show, setShow] = useState(false);
 
   function showUsersList() {
-    setShow(true);
+    getUserData()
+    setShow(true)
   }
 
-  useEffect(() => {
+  function getUserData() {
     fetch("https://reqres.in/api/users")
       .then((res) => res.json())
       .then((data) => setUsersData(data.data))
       .catch((err) => console.log(err));
-  });
+  }
   return (
     <div>
       {/* Do not remove the main div */}
@@ -62,7 +64,7 @@ const App = () => {
           )}
         </table>
       </div>
-      {!show && "No data found to display."}
+      {!show && noDataMessage}
     </div>
   );
 };
