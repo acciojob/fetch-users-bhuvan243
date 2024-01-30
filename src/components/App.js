@@ -4,12 +4,12 @@ import "./App.css";
 
 const App = () => {
   const [usersData, setUsersData] = useState([]);
-  const noDataMessage = 'No data found to display.'
+  const noDataMessage = "No data found to display.";
   const [show, setShow] = useState(false);
 
   function showUsersList() {
-    getUserData()
-    setShow(true)
+    getUserData();
+    setShow(true);
   }
 
   function getUserData() {
@@ -37,20 +37,9 @@ const App = () => {
               <th>Avatar</th>
             </tr>
           </thead>
-          {show && (
-            <tbody>
-              {/* <tr>
-              <td>george</td>
-              <td>bulth</td>
-              <td>gb@123</td>
-              <td>
-                <img
-                  alt="avatar"
-                  src="https://i.pinimg.com/474x/21/8a/c3/218ac38b88313924dadaffdaafc3293c.jpg"
-                />
-              </td>
-            </tr> */}
-              {usersData.map((user) => (
+          <tbody>
+            {usersData.length > 0 ? (
+              usersData.map((user) => (
                 <tr key={user.id}>
                   <td>{user.first_name}</td>
                   <td>{user.last_name}</td>
@@ -59,12 +48,15 @@ const App = () => {
                     <img alt={user.first_name} src={user.avatar} />
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          )}
+              ))
+            ) : (
+              <tr>
+                <td> No data found to display. </td>
+              </tr>
+            )}
+          </tbody>
         </table>
       </div>
-      {!show && noDataMessage}
     </div>
   );
 };
