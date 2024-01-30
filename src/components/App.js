@@ -34,7 +34,7 @@ const App = () => {
             </tr>
           </thead>
           {
-            !show && <p>No data found to display!</p>
+            !show && <p>No data found to display.</p>
           }
           {
             show && <tbody>
