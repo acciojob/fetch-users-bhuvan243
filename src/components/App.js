@@ -3,13 +3,13 @@ import "./../styles/App.css";
 import "./App.css";
 
 const App = () => {
-  const [usersData, setUsersData] = useState([])
-  const [show, setShow] = useState(false)
+  const [usersData, setUsersData] = useState([]);
+  const [show, setShow] = useState(false);
 
-  function showUsersList(){
+  function showUsersList() {
     setShow(true);
   }
-  
+
   useEffect(() => {
     fetch("https://reqres.in/api/users")
       .then((res) => res.json())
@@ -21,7 +21,9 @@ const App = () => {
       {/* Do not remove the main div */}
       <div className="header">
         <span>Blue Whales</span>
-        <button className="btn" onClick={showUsersList}>Get User List</button>
+        <button className="btn" onClick={showUsersList}>
+          Get User List
+        </button>
       </div>
       <div className="table">
         <table>
@@ -33,12 +35,9 @@ const App = () => {
               <th>Avatar</th>
             </tr>
           </thead>
-          {
-            !show && <p>No data found to display.</p>
-          }
-          {
-            show && <tbody>
-            {/* <tr>
+          {show && (
+            <tbody>
+              {/* <tr>
               <td>george</td>
               <td>bulth</td>
               <td>gb@123</td>
@@ -49,25 +48,21 @@ const App = () => {
                 />
               </td>
             </tr> */}
-            {
-              usersData.map((user) => (
+              {usersData.map((user) => (
                 <tr key={user.id}>
                   <td>{user.first_name}</td>
                   <td>{user.last_name}</td>
                   <td>{user.email}</td>
                   <td>
-                    <img
-                      alt={user.first_name}
-                      src={user.avatar}
-                    />
+                    <img alt={user.first_name} src={user.avatar} />
                   </td>
                 </tr>
-              ))
-            }
-          </tbody>
-          }
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
+      {!show && "No data found to display."}
     </div>
   );
 };
